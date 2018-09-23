@@ -93,14 +93,14 @@ $(document).ready(function(){
 
         };
   
-      // Create variable for image url from the object returned from the API
-      // if ( response && response.data && response.data[0].images.original.url) { // GUARD AGANST ERRORS
-      //   var imageUrl = response.data[0].images.original.url;
-      // };
-      // for (var j=0;j<apiLimit;j++) {
-        // var containsContent = response && response.data && response.data[j].images.looping.mp4;
-        // if ( containsContent ) { // GUARD AGAINST ERRORS
-          // var imageUrl = response.data[j].images.original.url;
+        // Create variable for image url from the object returned from the API
+        // if ( response && response.data && response.data[0].images.original.url) { // GUARD AGANST ERRORS
+        //   var imageUrl = response.data[0].images.original.url;
+        // };
+        // for (var j=0;j<apiLimit;j++) {
+            // var containsContent = response && response.data && response.data[j].images.looping.mp4;
+            // if ( containsContent ) { // GUARD AGAINST ERRORS
+              // var imageUrl = response.data[j].images.original.url;
         // };
         // if (CURR_DEBUG) {
         //   console.log("RESPONSE: imageUrl = " + imageUrl);
@@ -120,14 +120,6 @@ $(document).ready(function(){
         var insideDispObj = [];
         function populateDispObj() {
           response.data.map(function (jifItem, index) {
-            // console.log("jifItem = " + jifItem); // [object object]
-            // console.log(jifItem);
-            // console.log("index = " + index);
-            // console.log("jifItem.title = " + jifItem.title);
-            // console.log("jifItem.rating = " + jifItem.rating);
-            // console.log("jifItem.images.original_still.url = " + jifItem.images.original_still.url);
-            // console.log("jifItem.images.original.url = " + jifItem.images.original.url);
-            // console.log("jifItem.images.looping.mp4 = " + jifItem.images.looping.mp4);
             insideDispObj[index] = [{
               title: jifItem.title,  //: response.data[index].title,
               rating: jifItem.rating, //: response.data[index].rating,
@@ -135,19 +127,8 @@ $(document).ready(function(){
               originalGif: jifItem.images.original.url,   // : response.data[index].images.original.url
               mp4: jifItem.images.looping.mp4
             }];
-            // console.log("this = " + this);
-            // console.log(this); // Winbdow object, not useful
-            // console.log("insideDispObj = " + insideDispObj); // undefined
-            // console.log(insideDispObj); // undefined
-            // // console.log("Object.get.index = " + Object.get.index); // 
-            // console.log("insideDispObj[0].get(title) = " + insideDispObj[0].get(title)); //
-            // console.log("insideDispObj.get.rating = " + insideDispObj[0].get(rating)); // 
-            // console.log("insideDispObj.get.images.original_still = " + insideDispObj[0].get(originalStill));
-            // console.log("insideDispObj.get.images.original.url = " + OinsideDispObj[0].get(originaGifl));
-            // console.log("insideDispObj.get.mp4 = " + insideDispObj[0].get(mp4));
-
-          // return insideDispObj;
           } );
+          return insideDispObj;
         };
 
         var containsContent = response && response.data; // && response.data[0].images.looping.mp4;
@@ -161,73 +142,105 @@ $(document).ready(function(){
             console.log(insideDispObj[2][0]); // !
             console.log(insideDispObj[3][0]); // !
 
-            // insideDispObj.map(function(gifObj, index) {
-            //   console.log(gifObj[index][0]); // 
-            // });
-            // console.log("dispObj[0].jifItem.title = " + dispObj[0].jifItem.title);
-            // console.log("dispObj[0].jifItem.rating = " + dispObj[0].jifItem.rating);
-            // console.log("dispObj[0].jifItem.images.original_still.url = " + dispObj[0].jifItem.images.original_still.url);
-            // console.log("dispObj[0].jifItem.images.original.url = " + dispObj[0].jifItem.images.original.url);
-            // console.log("dispObj[0].jifItem.images.looping.mp4 = " + dispObj[0].jifItem.images.looping.mp4);
-
             console.log("insideDispObj[0][0].title = " + insideDispObj[0][0].title);
             console.log("insideDispObj[0][0].rating = " + insideDispObj[0][0].rating);
-            console.log("insideDispObj[0][0].originalStill = " + insideDispObj[0][0].originalStill);
+            console.log("insideDis(Obj[0][0].originalStill = " + insideDispObj[0][0].originalStill);
             console.log("insideDispObj[0][0].originalGif = " + insideDispObj[0][0].originalGif);
             console.log("insideDispObj[0][0].images.mp4 = " + insideDispObj[0][0].mp4);
           };
         };
-            // console.log(populateDispObj); // ?!
-/****************** MODALS ********************/
-// HTML
-{/* <img id="myImg" src="img_snow.jpg" alt="Snow" style="width:100%;max-width:300px">
+            console.log(dispObj); // 
+            console.log(dispObj[0][0]); // 
+            console.log(dispObj[1][0]); // 
+            console.log(dispObj[2][0]); // 
+            console.log(dispObj[3][0]); // 
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="img01">
-  <div id="caption"></div>
-      </div> */}
-
-{/* <script>
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById('myImg');
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-    modal.style.display = "none";
-}
-</script> */}
 
 /****************** MODALS ********************/
-          // Create var for new image tag/element on the DOM/HTML Page, Hangs out in memory until manipulated and appended
-          var animalImage = $("<img>");
+var gifStill = insideDispObj[0][0].originalStill;
+// var gifImg = insideDispObj[0][0].originalGif;
+var gifTitle = insideDispObj[0][0].title;
+var gifRating = insideDispObj[0][0].rating;
+var gifMp4 = insideDispObj[0][0].mp4;
 
-          // Add attributes to the element
-          // Every jQuery call takes an object and returns that object allowing for short cut form
-          // animalImage.attr("src", imageUrl);
-          // animalImage.attr("alt", "animal image");
-        // short cut form
-          animalImage.attr("src", imageUrl).attr("alt", queryTagText + " image");
-          // Place the new image at the end of the image list
-          $("#gif-section").append(animalImage);
-        // };
+var addModal = $('<div class="modal">')
+    .attr("id", "myModal")
+    .html('<div id="myModal" class="modal"><span class="close">&times;</span><img class="modal-content" id="img01"></img><div id="caption"></div> </div>');
+
+var addStill = $("<img>")
+    .attr("src", gifStill)
+    .attr("alt", gifTitle + " image")
+    .attr("style", "width:100%;max-width:300px");
+var addCaption = $("<p>")
+    .html(
+      $("<span>").text(gifTitle) + 
+      $("<span>").text(gifRating.toUpperCase() )
+      );
+var addGif = $("<img>")
+    .attr("src", gifMp4)
+    .attr("alt", gifTitle + " image");
+
+    $("#gif-section")
+      .html(
+        $(`<div class="col-md-4">`)
+        .append($(addModal))
+        .append($(addCaption))
+        .append($(addStill))
+        .append($(addGif))
+      );
+
+
+
+
+
+/************  END of  MODALS ********************/
+
+    // Create var for new image tag/element on the DOM/HTML Page, Hangs out in memory until manipulated and appended
+          // var animalImage = $("<img>");
+
+  // Add attributes to the element
+  // Every jQuery call takes an object and returns that object allowing for short cut form
+  // animalImage.attr("src", imageUrl);
+  // animalImage.attr("alt", "animal image");
+  // short cut form
+          // animalImage.attr("src", imageUrl).attr("alt", queryTagText + " image");
+  // Place the new image at the end of the image list
+          // $("#gif-section").append(animalImage);
+  // };
       },
       function(error) {
         // Error Handler here, server down etc
       });
+
+      // <!-- The Modal -->
+      // Get the modal
+      // var modal = document.getElementById('myModal');
+      var modal = $("myModal");
+      
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+      // var img = document.getElementById('myImg');
+      var img = $("myImg");
+
+      // var modalImg = document.getElementById("img01");
+      var modalImg = $("img01");
+
+      var captionText = document.getElementById("caption");
+      var captionText = $("caption");
+
+      // Click the still image to get gif...
+      img.onclick = function(){
+          modal.style.display = "block";
+          modalImg.src = this.src;
+          captionText.innerHTML = this.alt;
+      };
+
+      // Get the <span> element that closes the modal
+      // var span = document.getElementsByClassName("close")[0];
+      var span = $("close"[0]);
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() { 
+          modal.style.display = "none";
+      };
   });
 });
