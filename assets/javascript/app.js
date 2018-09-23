@@ -57,7 +57,7 @@ $(document).ready(function(){
 
 
     // Remove existing gifs IF they are there...
-
+    $("#gif-section").html("");
 
 
 
