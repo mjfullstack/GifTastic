@@ -158,10 +158,10 @@ $(document).ready(function(){
 
 /****************** MODALS ********************/
 var gifStill = insideDispObj[0][0].originalStill;
-// var gifImg = insideDispObj[0][0].originalGif;
+var gifImg = insideDispObj[0][0].originalGif;
 var gifTitle = insideDispObj[0][0].title;
 var gifRating = insideDispObj[0][0].rating;
-var gifMp4 = insideDispObj[0][0].mp4;
+// var gifMp4 = insideDispObj[0][0].mp4;
 
 var addModal = $('<div class="modal">')
     .attr("id", "myModal")
@@ -171,13 +171,17 @@ var addStill = $("<img>")
     .attr("src", gifStill)
     .attr("alt", gifTitle + " image")
     .attr("style", "width:100%;max-width:300px");
-var addCaption = $("<p>")
-    .html(
-      $("<span>").text(gifTitle) + 
-      $("<span>").text(gifRating.toUpperCase() )
-      );
+var addCaption = $("<p> id='gif-caption")
+var addTitle = $("<span id'='gif-title'>").html("Title: " + gifTitle + ",&nbsp;&nbsp;" + "</span>");
+var addRating = $("<span id='gif-rating'>").html("Rating:  " + gifRating.toUpperCase() + "</span>");
+    addCaption.append(addTitle);
+    addCaption.append(addRating);
+    console.log ( "addCaption = " + addCaption );
+    console.log ( "gifTitle = " + gifTitle );
+    console.log ( "gifRating = " + gifRating );
+
 var addGif = $("<img>")
-    .attr("src", gifMp4)
+    .attr("src", gifImg)
     .attr("alt", gifTitle + " image");
 
     $("#gif-section")
@@ -186,7 +190,7 @@ var addGif = $("<img>")
         .append($(addModal))
         .append($(addCaption))
         .append($(addStill))
-        .append($(addGif))
+        // .append($(addGif))
       );
 
 
@@ -222,9 +226,10 @@ var addGif = $("<img>")
       var img = $("myImg");
 
       // var modalImg = document.getElementById("img01");
-      var modalImg = $("img01");
+      // var modalImg = $("img01");
+      var modalImg = $("gifImg");
 
-      var captionText = document.getElementById("caption");
+      // var captionText = document.getElementById("caption");
       var captionText = $("caption");
 
       // Click the still image to get gif...
@@ -232,6 +237,7 @@ var addGif = $("<img>")
           modal.style.display = "block";
           modalImg.src = this.src;
           captionText.innerHTML = this.alt;
+          console.log("Saw IMG.onclick...");
       };
 
       // Get the <span> element that closes the modal
@@ -241,6 +247,7 @@ var addGif = $("<img>")
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() { 
           modal.style.display = "none";
-      };
+          console.log("Saw SPAN.onclick...");
+        };
   });
 });
