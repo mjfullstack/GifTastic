@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 
   // var rawBtns = ["horses", "giraffes", "rhinos", "unicorns", "pandas", "ducks", "whales"]; // TBD: killerWhales, humpbackWhales];
-  var btnArr = ["geese", "horses", "giraffes", "rhinos", "unicorns", "pandas", "ducks", "whales"]; // TBD: killerWhales, humpbackWhales];
+  var btnArr = ["cat", "dachsund","hamster", "geese", "horses", "giraffes", "rhinos", "unicorns", "pandas", "ducks", "whales"]; // TBD: killerWhales, humpbackWhales];
 
   // Functions
   // -----------------------------------
