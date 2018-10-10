@@ -129,17 +129,17 @@ $(document).ready(function(){
   }
   ];
   ************* Organization of dispObj ****************/
- var insideDispObj = [];
- function populateDispObj() {
-  response.data.map(function (jifItem, index) {
-    insideDispObj[index] = [{
-      title: jifItem.title,  //: response.data[index].title,
-      rating: jifItem.rating, //: response.data[index].rating,
-      originalStill: jifItem.images.original_still.url, 
-      originalGif: jifItem.images.original.url,   // : response.data[index].images.original.url
-      mp4: jifItem.images.looping.mp4
-    }];
-  } );
+  var insideDispObj = [];
+  function populateDispObj() {
+    response.data.map(function (jifItem, index) {
+      insideDispObj[index] = [{
+        title: jifItem.title,  //: response.data[index].title,
+        rating: jifItem.rating, //: response.data[index].rating,
+        originalStill: jifItem.images.original_still.url, 
+        originalGif: jifItem.images.original.url,   // : response.data[index].images.original.url
+        mp4: jifItem.images.looping.mp4
+      }];
+    } );
   return insideDispObj;
   };
 
@@ -149,7 +149,7 @@ $(document).ready(function(){
         var containsContent = response && response.data; // && response.data[0].images.looping.mp4;
         if ( containsContent ) { // GUARD AGAINST ERRORS
           var dispObj = populateDispObj();
-          if (CURR_DEBUG) {
+          if (DEBUG) {
             console.log("insideDispObj = " + insideDispObj); // [object object], x4
             console.log(insideDispObj); // 4 arrays!
             console.log(insideDispObj[0][0]); // !
@@ -173,71 +173,84 @@ $(document).ready(function(){
         };
 
 /****************** MODALS ********************/
-var gifStill = insideDispObj[0][0].originalStill;
-var gifImg   = insideDispObj[0][0].originalGif;
-var gifTitle = insideDispObj[0][0].title;
-var gifRating = insideDispObj[0][0].rating;
-// var gifMp4 = insideDispObj[0][0].mp4;
+// insideDispObj.map(function(dispItem, index) {
+for (var index=0; index<dispObj.length; index++) {
+  // var gifStill = dispItem[index][0].originalStill;
+  // var gifImg   = dispItem[index][0].originalGif;
+  // var gifTitle = dispItem[index][0].title;
+  // var gifRating = dispItem[index][0].rating;
+  // var gifMp4 = dispItem[index][0].mp4;
+  var gifStill = dispObj[index][0].originalStill;
+  var gifImg   = dispObj[index][0].originalGif;
+  var gifTitle = dispObj[index][0].title;
+  var gifRating = dispObj[index][0].rating;
+  // var gifMp4 = dispObj[index][0].mp4;
 
-var addModal = $('<div>')
-    .addClass("modal")
-    .attr("id", "myModal")
-    .html('<span class="close">&times;</span>');
-var addModalGif = $("<img>")
-    .addClass("modal-content")
-    .attr("id", "gif-img")
-    .attr("src", gifImg) // Works
-    // .attr("id", "caption");
-    // .html('<img class="modal-content" id="gif-img" src=gifImg></img><div id="caption"></div>');
-    addModal.append(addModalGif);
+  
+  var addModal = $('<div>')
+      .addClass("modal")
+      .addClass("myModal")
+      .attr("id", "modalArr" + index) 
+      .html('<span class="close">&times;</span>');
+  var addModalGif = $("<img>")
+      .addClass("modal-content")
+      .attr("id", "gif-img")
+      .attr("src", gifImg); // Works
+      // .attr("id", "caption");
+      // .html('<img class="modal-content" id="gif-img" src=gifImg></img><div id="caption"></div>');
+      addModal.append(addModalGif);
 
-var addStill = $("<img>")
-    .attr("id", "myImg")
-    .attr("src", gifStill) // Works
-    .attr("alt", gifTitle + " image")
-    .attr("style", "width:100%;max-width:300px");
-var addCaption = $("<p> id='gif-caption")
-var addTitle = $("<span id'='gif-title'>").html("Title: " + gifTitle + ",&nbsp;&nbsp;" + "</span>");
-var addRating = $("<span id='gif-rating'>").html("Rating:  " + gifRating.toUpperCase() + "</span>");
-    addCaption.append(addTitle);
-    addCaption.append(addRating);
-var addGif = $("<img>")
-    .attr("src", gifImg)
-    .attr("alt", gifTitle + " image");
-    if (CURR_DEBUG) {
-      // console.log ( "addModal = ..." );
-      // console.log (  addModal );
-      // console.log ( "addCaption = ..." );
-      // console.log (  addCaption );
-      // console.log ( "gifTitle = " + gifTitle );
-      // console.log ( "gifRating = " + gifRating );
-      // console.log ( "addStill = ..." );
-      // console.log (  addStill );
-      console.log ( "addGif = ...");
-      console.log (  addGif );
-      console.log ( "addModalGif = ...");
-      console.log (  addModalGif );
-    };
-
-
-    $("#gif-section")
-    .html(
-      $(`<div class="col-md-4">`)
-      // .append($(addModal))
-      .append($(addCaption))
-      .append($(addStill))
-      // .append($(addGif))
-    );
+  var addStill = $("<img>")
+      // .attr("id", "myImg")
+      .addClass("myImg")
+      .attr("src", gifStill) // Works
+      .attr("alt", gifTitle + " image")
+      .attr("style", "width:100%;max-width:300px");
+  var addCaption = $("<p> class='gif-caption")
+  var addTitle = $("<span class'='gif-title'>").html("Title: " + gifTitle + ",&nbsp;&nbsp;" + "</span>");
+  var addRating = $("<span class='gif-rating'>").html("Rating:  " + gifRating.toUpperCase() + "</span>");
+      addCaption.append(addTitle);
+      addCaption.append(addRating);
+  var addGif = $("<img>")
+      .attr("src", gifImg)
+      .attr("alt", gifTitle + " image");
+      if (CURR_DEBUG) {
+        console.log ( "addModal = ..." );
+        console.log (  addModal );
+        // console.log ( "addCaption = ..." );
+        // console.log (  addCaption );
+        // console.log ( "gifTitle = " + gifTitle );
+        // console.log ( "gifRating = " + gifRating );
+        // console.log ( "addStill = ..." );
+        // console.log (  addStill );
+        // console.log ( "addGif = ...");
+        // console.log (  addGif );
+        console.log ( "addModalGif = ...");
+        console.log (  addModalGif );
+      };
 
 
-    $("#modal-section")
-      .html(
+      $("#gif-section")
+      // .html(
+      .append(
         $(`<div class="col-md-4">`)
-        .append($(addModal))
-        // .append($(addCaption))
-        // .append($(addStill))
+        // .append($(addModal))
+        .append($(addCaption))
+        .append($(addStill))
         // .append($(addGif))
       );
+
+
+      $("#modal-section")
+      // .html(
+      .append(
+          $(`<div class="col-md-4">`)
+          .append($(addModal))
+          // .append($(addCaption))
+          // .append($(addStill))
+          // .append($(addGif))
+        );
+      } ;
 
 
 
@@ -246,7 +259,7 @@ var addGif = $("<img>")
 /************  END of  MODALS ********************/
 
     // Create var for new image tag/element on the DOM/HTML Page, Hangs out in memory until manipulated and appended
-          // var animalImage = $("<img>");
+    // var animalImage = $("<img>");
 
   // Add attributes to the element
   // Every jQuery call takes an object and returns that object allowing for short cut form
@@ -266,56 +279,43 @@ var addGif = $("<img>")
 
       // <!-- The Modal -->
       // Get the modal
-      // var modal = document.getElementById('myModal');
-      $("#gif-section").on("click", "#myImg", function() {
-        var modal = $("#myModal");
+      // $("#foodsSelected").on("click", ".go-find-btn", function () { // ADDED ".go-find-btn" to get JS to dive into the object
+      // $("#drinksSelected").on("click", ".sel-drink-btn", function () { // ADDED ".sel-drink-btn" to get JS to dive into the object
+      $("#gif-section").on("click", ".myImg", function() {
+        var modal = $(".modal");
+        var myModal = $(".myModal");
         console.log("modal...");
         console.log(modal);
-        // var modalWeWant = ["0"].currentSrc;
-        // console.log("modalWeWant...");
-        // console.log(modalWeWant);
 
       // Get the image and insert it inside the modal - use its "alt" text as a caption
-      // var img = document.getElementById('myImg');
-      var img = $("#myImg");
-      // console.log("img...");
-      // console.log(img);
+      var img = $(".myImg");
 
-      // var modalImg = document.getElementById("img01");
-      // var modalImg = $("img01");
-      var modalImg = $("#myImg");
+      var modalImg = $(".myImg");
       console.log("modalImg...");
       console.log(modalImg);
 
-      // var captionText = document.getElementById("caption");
-      var captionText = $("#caption");
-      // console.log("captionText...");
-      // console.log(captionText);
+      // var captionText = $("#caption");
+      var captionText = $(".gif-caption");
 
       // Click the still image to get gif...
-      // img.onclick = function(){
-          // modal.style.display = "block";
-          // modalWeWant.css("display", "block");
-          modal.css("display", "block");
-          modalImg.css("display", "block");
-          // modalImg.src = this.src;
-          captionText.innerHTML = this.alt;
-          console.log("Saw IMG.onclick...");
-      // };
-      // Get the <span> element that closes the modal
-      // var span = document.getElementsByClassName("close")[0];
-      var span = $(".close");
+      modal.css("display", "block");
+      modalImg.css("display", "block");
+      captionText.innerHTML = this.alt;
+      console.log("Saw IMG.onclick...");
 
+      // Get the <span> element that closes the modal
+      var span = $(".close");
+      var modalClose = $("#modal-section");
       console.log("span[0]...");
       console.log(span[0]);
 
       // When the user clicks on <span> (x), close the modal
-      span[0].onclick = function() { 
-          // modal.style.display = "none";
+      // span.onclick(".close") = function() { 
+        modalClose.on("click", span, function() {
           modal.css("display", "none");
-          // modalImg.css("display", "none");
+          myModal.css("display", "none");
           console.log("Saw SPAN.onclick...");
-        };
+        });
       })
 
 });
