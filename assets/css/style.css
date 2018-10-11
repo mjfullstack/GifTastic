@@ -2,8 +2,16 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.gif-title, .gif-caption, .gif-rating {
+/* .modal .gif-title, .gif-caption, .gif-rating {
     font-weight: bolder;
+    color: white;
+    font-size: 18pt;
+} */
+
+.data-gif-title, .data-gif-rating {
+    font-weight: bolder;
+    color: white;
+    font-size: 18pt;
 }
 
 .myImg {
