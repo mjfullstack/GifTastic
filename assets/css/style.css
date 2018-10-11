@@ -2,20 +2,28 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#gif-title, #gif-caption {
+/* .modal .gif-title, .gif-caption, .gif-rating {
     font-weight: bolder;
+    color: white;
+    font-size: 18pt;
+} */
+
+.data-gif-title, .data-gif-rating {
+    font-weight: bolder;
+    color: white;
+    font-size: 18pt;
 }
 
-#myImg {
+.myImg {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
 }
 
-#myImg:hover {opacity: 0.7;}
+.myImg:hover {opacity: 0.7;}
 
 /* The Modal (background) */
-.modal, #myModal {
+.modal, .myModal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
